@@ -1,5 +1,6 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Patient } from "../../patient/entities/patient.entity";
+import { Note } from "../../note/entities/note.entity";
 
 @Entity()
 export class Visit {
@@ -11,4 +12,7 @@ export class Visit {
 
   @ManyToOne(() => Patient, (patient) => patient.visits)
   patient: Patient;
+
+  @OneToMany(() => Note, (note) => note.visit)
+    note: Note[];
 }
